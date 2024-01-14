@@ -19,7 +19,6 @@
 const char* ssid 	    = STASSID;				  // WIFI SSID
 const char* password  = STAPSK;				    // WIFI PASSWORD
 
-const char* ecu_id 	  = USER_ECU_ID;	    // ECU ID
 const char* ecu_id_ip = USER_ECU_IP;  	  // IP of ECU
 const uint16_t port   = USER_ECU_PORT;	  // STD ECU PORT
 
@@ -165,6 +164,8 @@ class APSystemsSocket
 public:
     APSystemsSocket(const char *ip, long port);
     ~APSystemsSocket();
+
+    String getEcu_id();
 
     int  QueryECU(const char* request);
     int  ProcessData();
@@ -635,6 +636,19 @@ int  APSystemsSocket::ProcessData()
 }
 
 /**
+ * \brief   getEcu_id
+ *
+ * \param 	none
+ * \return	return ECU ID
+ */
+String  APSystemsSocket::getEcu_id()
+{
+  String value;
+  value = ecuData.ecu_id;
+  return value;
+}
+
+/**
  * \brief   DisplayData
  *
  * \param 	none
@@ -813,7 +827,7 @@ void loop() {
 	
     /// Create CMD INVERTED
 	  command_string = START_REQUEST_INV;
-    command_string+= ecu_id ;
+    command_string+= my_ecu.getEcu_id();
     command_string+= STOP_REQUEST;
 
     my_ecu.QueryECU(command_string.c_str());
@@ -821,7 +835,7 @@ void loop() {
     
     /// Create CMD SIGNAL POWER
 	  command_string = START_REQUEST_SIG;
-    command_string+= ecu_id ;
+    command_string+= my_ecu.getEcu_id();
     command_string+= STOP_REQUEST;
 
     my_ecu.QueryECU(command_string.c_str());
