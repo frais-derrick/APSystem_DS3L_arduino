@@ -655,47 +655,7 @@ String  APSystemsSocket::getEcu_id()
  * \return	none
  */
 void  APSystemsSocket::DisplayData()
-{
-  /*
-  struct inverter_data_norm
-{
-    char            uid[13];
-    unsigned char   online;
-    float           line_frequency;
-    float           temperature;
-    unsigned short  ds3l_power_1;
-    unsigned short  ds3l_voltage_1;
-    unsigned short  ds3l_power_2;
-    unsigned short  ds3l_voltage_2;
-};
-
-struct inverter_radio_norm
-{
-    char            uid[13];
-    unsigned short  signal;
-};
-
-struct mytimestamp
-{
-    unsigned short  year;
-    unsigned short  month;
-    unsigned short  day;
-    unsigned short  hour;
-    unsigned short  minute;
-    unsigned short  second;    
-};
-
-struct ecu_datas
-{
-  char                ecu_id[15];
-  unsigned long       currentPower;
-  float               dayPower;
-  mytimestamp         curtime;
-  unsigned short      inverters_count;
-  inverter_data_norm  inv_data [MAX_INVERTERS];
-  inverter_radio_norm inv_radio[MAX_INVERTERS];
-};
-*/
+{ 
   Serial.print("ECU ID : ");
   Serial.println(ecuData.ecu_id);
 
